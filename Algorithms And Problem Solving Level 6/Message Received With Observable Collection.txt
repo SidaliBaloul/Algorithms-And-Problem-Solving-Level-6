@@ -1,0 +1,41 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        
+
+        static void Main()
+        {
+            ObservableCollection<string> Tasks = new ObservableCollection<string>();
+            Tasks.CollectionChanged += (sender, e) =>
+            {
+                if (e.Action == NotifyCollectionChangedAction.Add)
+                    Console.WriteLine($"New Message Received: {e.NewItems[0]}");
+
+
+            };
+
+            Tasks.Add("hello");
+            Tasks.Add("How are You ?");
+
+
+
+
+
+            Console.ReadKey();
+
+        }
+    }
+}

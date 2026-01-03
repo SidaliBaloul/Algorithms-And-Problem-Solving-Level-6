@@ -1,0 +1,76 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Permissions;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        class EmployeeNode
+        {
+             public string Name { get; set; }
+             public string Grade { get; set; }
+             public List<EmployeeNode> Subordinates { get; set; } = new List<EmployeeNode>();
+
+            public enum efile { Ceo = 1, File = 2 }
+
+
+            public EmployeeNode(string name, string grade)
+            {
+                this.Name = name;
+                this.Grade = grade;
+            }
+
+            public void AddChild(EmployeeNode system)
+            {
+                Subordinates.Add(system);
+            }
+
+            public void Print(string indent = "")
+            {
+                 Console.WriteLine(indent + Grade + " : " + Name);
+                Console.WriteLine();
+
+                foreach(var child in Subordinates)
+                {
+                    child.Print(indent + "  " );
+                }
+            }
+        }
+
+        static void Main()
+        {
+            EmployeeNode Ceo = new EmployeeNode("Alice","CEO");
+
+            EmployeeNode Vp1 = new EmployeeNode("Bob", "VP of Marketing");
+            EmployeeNode Vp2 = new EmployeeNode("Lara", "VP of Technologie");
+
+            EmployeeNode employee1 = new EmployeeNode("Charlie", "Marketing Manager");
+            EmployeeNode employee2 = new EmployeeNode("Tom", "Architect");
+
+
+            Ceo.AddChild(Vp1);
+            Ceo.AddChild(Vp2);
+
+            Vp1.AddChild(employee1);
+            Vp2.AddChild(employee2);
+
+            Ceo.Print();
+            
+          
+
+            Console.ReadKey();
+
+
+        }
+    }
+}

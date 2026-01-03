@@ -1,0 +1,67 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static List<int> GreedyAlgorithm(List<int> arr,int amount)
+        {
+            arr.Sort((a, b) => b.CompareTo(a));
+
+            List<int> coins = new List<int>();
+            int i = 0;
+            int papers = 0;
+
+            while(amount > 0)
+            {
+                if (amount < arr[i])
+                {
+                    i++;
+                    continue;
+                }
+
+                amount -= arr[i];
+                papers++;
+                coins.Add(arr[i]);
+
+            }
+
+            return coins;
+        }
+
+        static void Main()
+        {
+            List<int> denominations = new List<int>() { 1, 5, 10, 20, 50, 100 };
+
+            List<int> list = GreedyAlgorithm(denominations, 33);
+
+
+            Console.WriteLine("Coins Used : \n");
+
+            foreach(int i in list)
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine("\nNumber Of Coins : " + list.Count);
+
+            Console.WriteLine("Press any key to exit...");
+
+
+
+            Console.ReadKey();
+
+
+        }
+    }
+}

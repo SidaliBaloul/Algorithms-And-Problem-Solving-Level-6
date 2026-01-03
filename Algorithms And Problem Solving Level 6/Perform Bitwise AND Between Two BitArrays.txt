@@ -1,0 +1,68 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static BitArray BitWiseANDBetweenTwoBitArrays(BitArray array1 , BitArray array2)
+        {
+            BitArray array = new BitArray(8);
+
+            for (int i = 0; i < array1.Length;i++)
+            {
+                if (array1[i] & array2[i] == true)
+                    array[i] = true;
+                else
+                    array[i] = false;
+            }
+
+            return array;
+        }
+
+        static void Main()
+        {
+            BitArray array1 = new BitArray(8);
+            BitArray array2 = new BitArray(8);
+
+            array1[0] = true;
+            array1[1] = false;
+            array1[2] = true;
+            array1[3] = false;
+            array1[4] = true;
+            array1[5] = true; 
+            array1[6] = true;
+            array1[7] = false;
+
+            array2[0] = true;
+            array2[1] = false;
+            array2[2] = false;
+            array2[3] = false;
+            array2[4] = false;
+            array2[5] = true;
+            array2[6] = false;
+            array2[7] = true;
+
+            BitArray array = BitWiseANDBetweenTwoBitArrays(array1, array2);
+
+            foreach(bool item in array)
+            {
+                Console.Write(item + ", ");
+            }
+
+
+
+            Console.ReadKey();
+
+        }
+    }
+}

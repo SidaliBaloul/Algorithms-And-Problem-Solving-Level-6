@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static string DecimalToBinary(int number)
+        {
+            Stack<int> stack = new Stack<int>();
+
+            while (number > 0)
+            {
+                stack.Push(number % 2);
+                number /= 2;
+            }
+
+            return string.Join("", stack);
+        }
+
+        static void Main()
+        {
+            Console.WriteLine(DecimalToBinary(8));
+            Console.ReadKey();
+        }
+    }
+}

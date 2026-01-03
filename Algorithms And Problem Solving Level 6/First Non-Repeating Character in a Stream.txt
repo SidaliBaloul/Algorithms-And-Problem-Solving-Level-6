@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+
+
+        static void RepeatingCharInQueue(string stream)
+        {
+            Dictionary<char, int> mydictionary = new Dictionary<char, int>();
+            Queue<char> qu = new Queue<char>();
+
+            foreach (char c in stream)
+            {
+                if (mydictionary.ContainsKey(c))
+                {
+                    mydictionary[c] += 1;
+                }
+                else
+                {
+                    mydictionary.Add(c, 0);
+                    qu.Enqueue(c);
+                }
+
+                Console.WriteLine(mydictionary[c] < 1 ? qu.Dequeue() : '-');
+            }
+
+        }
+
+        static void Main()
+        {
+            RepeatingCharInQueue("aabc");
+
+        
+
+        }
+    }
+}

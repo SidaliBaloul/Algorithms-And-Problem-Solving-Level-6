@@ -1,0 +1,49 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static bool IsPalindrome(string input)
+        {
+            Stack<char> stack = new Stack<char>();
+            
+            foreach(char c in input)
+            {
+                stack.Push(c);
+            }
+
+            foreach (char c in input)
+            {
+                if(stack.Pop() != c)
+                    return false;
+            }
+
+
+            return true;
+        }
+
+
+        static void Main()
+        {
+
+            string input = "maddam";
+            Console.WriteLine($"Is \"{input}\" Palindrome ? {IsPalindrome(input)}");
+
+
+            input = "hello";
+            Console.WriteLine($"Is \"{input}\" Palindrome ? {IsPalindrome(input)}");
+
+
+            Console.ReadKey();
+
+        }
+    }
+}

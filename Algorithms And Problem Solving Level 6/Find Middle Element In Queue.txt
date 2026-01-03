@@ -1,0 +1,29 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        public static int FindMiddleElementInQueue(Queue<int> queue)
+        {
+            List<int> list = new List<int>(queue);   
+
+            return (list[list.Count /2]);
+        }
+
+
+        static void Main()
+        {
+            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3});
+            
+            Console.WriteLine(" The Middle Element Is : " + FindMiddleElementInQueue(queue));
+        }
+    }
+}

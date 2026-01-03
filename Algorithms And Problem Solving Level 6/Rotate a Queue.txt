@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static Queue<int> RotateQueueElements(Queue<int> qu,int k)
+        {
+            for(int i = 1; i <= k;i++)
+            {
+                qu.Enqueue(qu.Dequeue());
+            }
+
+            return qu;
+        }
+
+        static void Main()
+        {
+            Queue<int> qu = new Queue<int>(new[] { 1, 2, 3, 4, 5 });
+
+            qu = RotateQueueElements(qu, 2);
+
+            Console.WriteLine(string.Join(", ", qu)); 
+
+        }
+    }
+}

@@ -1,0 +1,59 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        class PriorityQueue
+        {
+            SortedDictionary<int, int> mydictionary = new SortedDictionary<int, int>();
+
+            public void Enqueue(int value, int index)
+            {
+                if (!mydictionary.ContainsKey(index))
+                {
+                    mydictionary.Add(index, value);
+                }
+                else
+                    mydictionary[index] = value;
+            }
+
+            public int Dequeue()
+            {
+                if (mydictionary.Count != 0)
+                {
+                    int x = mydictionary[mydictionary.Keys.Max()];
+
+                    mydictionary.Remove(mydictionary.Keys.Max());
+
+                    return x;
+                }
+
+                return 0;
+            }
+        }
+        
+
+        static void Main()
+        {
+            PriorityQueue qu = new PriorityQueue();
+
+            qu.Enqueue(10, 1);
+            qu.Enqueue(5, 3);
+            qu.Enqueue(20, 2);
+
+            Console.WriteLine(qu.Dequeue());
+            Console.WriteLine(qu.Dequeue());
+
+
+
+        }
+    }
+}

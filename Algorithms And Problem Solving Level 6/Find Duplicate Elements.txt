@@ -1,0 +1,57 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static List<int> FindDuplicates(int[] arr)
+        {
+            Dictionary<int, int> frequency = new Dictionary<int, int>();
+            List <int> dublicates = new List<int>();
+
+            foreach (int c in arr)
+            {
+
+                if (frequency.ContainsKey(c))
+                {
+                    frequency[c]++;
+
+                    if (frequency[c] == 2)
+                        dublicates.Add(c);
+                }
+                else
+                    frequency.Add(c, 1);
+            }
+
+
+
+            return dublicates;
+            
+        }
+
+
+        static void Main()
+        {
+            int[] array = new int[] { 1, 2, 3, 4, 2, 5, 6, 1 };
+
+
+            List<int> ff = FindDuplicates(array);
+
+            foreach(int c in ff)
+                Console.WriteLine(c);
+
+
+
+            Console.ReadKey();
+
+        }
+    }
+}

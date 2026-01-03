@@ -1,0 +1,35 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+
+
+
+        static void Main()
+        {
+            Dictionary<string, (string Title, string Author)> books = new Dictionary<string, (string, string)>
+        {
+            { "978-3-16-148410-0", ("The Great Gatsby", "F. Scott Fitzgerald") },
+            { "978-1-61-729494-5", ("C# in Depth", "Jon Skeet") }
+        };
+
+            foreach (var book in books)
+            {
+                Console.WriteLine($"ISBN: {book.Key}, Title: {book.Value.Title}, Author: {book.Value.Author}");
+            }
+
+            Console.ReadKey();
+
+        }
+    }
+}

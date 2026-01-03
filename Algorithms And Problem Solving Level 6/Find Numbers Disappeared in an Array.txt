@@ -1,0 +1,45 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+
+        static int[] CheckNotExistedElementsInArray(int[] nums1)
+        {
+            HashSet<int> set1 = new HashSet<int>(nums1);
+            List<int> result = new List<int>();
+
+            for (int i = 1;i < nums1.Length;i++)
+            {
+                if (!set1.Contains(i))
+                    result.Add(i);
+            }
+
+
+            return result.ToArray();
+        }
+
+
+        static void Main()
+        {
+
+            int[] nums1 = { 4, 3, 2, 7, 8, 2, 3, 1 };
+
+            Console.WriteLine(string.Join(", ", CheckNotExistedElementsInArray(nums1)));
+
+         
+
+            Console.ReadKey();
+
+        }
+    }
+}

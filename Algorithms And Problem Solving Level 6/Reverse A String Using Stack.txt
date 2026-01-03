@@ -1,0 +1,41 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        public static string ReverseStringWithStack(string word)
+        {
+            Stack<char> stack = new Stack<char>();
+            string newword = "";
+
+            for(int i = 0; i < word.Length; i++)
+            {
+                stack.Push(word[i]);
+            }
+
+            while(stack.Count > 0)
+            {
+                newword += stack.Pop();
+            }
+
+            return newword;
+        }
+
+
+        static void Main()
+        {
+            string word = "hello";
+            string newword = ReverseStringWithStack(word);
+
+            Console.WriteLine(newword);
+        }
+    }
+}

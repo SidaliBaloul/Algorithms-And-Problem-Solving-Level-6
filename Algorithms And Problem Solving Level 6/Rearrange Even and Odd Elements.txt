@@ -1,0 +1,52 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+         public static Queue<int> RearrangeEvenAndOddNumbersInQueue(Queue<int> queue)
+         {
+            Queue<int> queue1 = new Queue<int>();
+            Queue<int> queue2 = new Queue<int>();
+
+
+            while(queue.Count > 0)
+            {
+                if(queue.Peek() % 2 == 0)
+                    queue1.Enqueue(queue.Dequeue());
+                else
+                    queue2.Enqueue(queue.Dequeue());
+            }
+
+
+            while (queue1.Count > 0)
+                queue.Enqueue(queue1.Dequeue());
+
+            while(queue2.Count > 0)
+                queue.Enqueue(queue2.Dequeue());
+
+            return queue;
+         }
+
+
+        static void Main()
+        {
+            Queue<int> queue = new Queue<int>(new[] {1,2,3,4,5,6});
+
+
+            queue = RearrangeEvenAndOddNumbersInQueue(queue);
+
+            foreach(int i in queue)
+                Console.Write(i + ", ");
+
+
+        }
+    }
+}

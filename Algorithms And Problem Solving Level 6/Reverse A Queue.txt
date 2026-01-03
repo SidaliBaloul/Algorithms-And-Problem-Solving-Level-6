@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        public static void ReverseQueue(ref Queue<int> qu)
+        {
+
+            Stack<int> st = new Stack<int>();
+
+
+            while(qu.Count > 0)
+            {
+                st.Push(qu.Dequeue());
+            }
+
+
+            int count2 = st.Count;
+
+            for (int ii = 0; ii < count2; ii++)
+            {
+                qu.Enqueue(st.Pop());
+            }
+        }
+
+        static void Main()
+        {
+           Queue<int> qu = new Queue<int>(new[] { 1,2,3,4,5});
+
+            Console.WriteLine("Queue Before Reverse : \n");
+
+            foreach(var item in qu) 
+            { 
+                Console.Write(item + ",");
+            }
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Queue After Reverse : \n");
+
+            ReverseQueue(ref qu);
+
+            foreach (var item in qu)
+            {
+                Console.Write(item + ",");
+            }
+
+
+        }
+    }
+}

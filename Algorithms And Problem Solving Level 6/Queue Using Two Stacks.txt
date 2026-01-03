@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        class MyQueue
+        {
+            Stack<int> mystack1 = new Stack<int>();
+            Stack<int> mystack2 = new Stack<int>();
+
+            public void Enqueue(int number)
+            { 
+                mystack1.Push(number);
+            }
+
+            public int Dequeue()
+            {
+                if (mystack2.Count == 0)
+                {
+                    while (mystack1.Count > 0)
+                    {
+                        mystack2.Push(mystack1.Pop());
+                    }
+                }
+
+                return mystack2.Pop();
+            }
+        }
+
+        static void Main()
+        {
+            MyQueue queue = new MyQueue();
+
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+
+            Console.WriteLine(queue.Dequeue());
+            Console.WriteLine(queue.Dequeue());
+
+        
+
+        }
+    }
+}

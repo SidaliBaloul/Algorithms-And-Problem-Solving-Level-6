@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        public class clsPage
+        {
+            public int PageNumber { get; set; }
+
+            public clsPage(int pagenum)
+            {
+                this.PageNumber = pagenum;
+            }
+        }
+
+        public class clsBrowser
+        {
+            public Stack<clsPage> pages = new Stack<clsPage>();
+            public clsPage newpage;
+
+            public clsBrowser()
+            {
+                newpage = new clsPage(1);
+                pages.Push(newpage);
+            }
+
+            public void CreatePage()
+            {
+                pages.Push(new clsPage(pages.Peek().PageNumber + 1));
+            }
+
+            public void Back()
+            {
+                pages.Pop();
+            }
+
+        }
+
+        public static void Print(clsBrowser br)
+        {
+            Console.Clear();
+            PrintPage(br);
+        }
+
+        public static void PrintPage(clsBrowser br)
+        {
+            Console.WriteLine("Page Number : " + br.pages.Peek().PageNumber.ToString());
+            ConsoleKeyInfo keyInfo;
+
+            do
+            {
+                Console.WriteLine("\n\nPress Y To Add Page B to Back : ");
+
+                keyInfo = Console.ReadKey(true);
+
+            } while (keyInfo.Key == ConsoleKey.B && br.pages.Count <= 1);
+
+            if (keyInfo.Key == ConsoleKey.Y)
+            {
+                br.CreatePage();
+            }
+            else if (keyInfo.Key == ConsoleKey.B)
+                br.Back();
+
+            Print(br);
+        }
+
+
+
+
+        static void Main(string[] args)
+        {
+            clsBrowser br = new clsBrowser();
+            Print(br);
+        }
+    }
+}

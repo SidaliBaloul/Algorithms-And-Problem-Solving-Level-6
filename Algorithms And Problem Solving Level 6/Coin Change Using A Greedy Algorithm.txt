@@ -1,0 +1,80 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Permissions;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+
+        static List<int> MinCoins(List<int> coins, int amount)
+        {
+
+
+            coins.Sort((a, b) => b.CompareTo(a));
+
+
+          
+            List<int> result = new List<int>();
+
+
+           
+            foreach (int coin in coins)
+            {
+                while (amount >= coin)
+                {
+                    
+                    amount -= coin;
+              
+                    result.Add(coin);
+                }
+            }
+           
+            return result;
+        }
+    
+
+        static void Main()
+        {
+            //int[] coins = { 1, 5, 10, 20, 50, 100 };
+
+
+            List<int> coins = new List<int> { 1, 5, 10, 20, 50, 100 };
+
+            int amount = 33;
+
+
+            List<int> result = MinCoins(coins, amount);
+
+
+          
+            Console.WriteLine("Coins used to form total:");
+            short TotalCoins = 0;
+
+
+            foreach (var coin in result)
+            {
+                Console.WriteLine(coin);
+                TotalCoins++;
+            }
+            Console.WriteLine("\nTotal Given Coins = " + TotalCoins);
+
+
+
+
+            Console.ReadKey();
+
+
+        }
+
+    }
+}

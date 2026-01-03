@@ -1,0 +1,81 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Permissions;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        class FileSystem
+        {
+             public string Name { get; set; }
+             public bool IsFile { get; set; }
+             public List<FileSystem> children { get; set; } = new List<FileSystem>();
+
+            public enum efile { Directory = 1, File = 2 }
+
+
+            public FileSystem(string name, efile filemode)
+            {
+                this.Name = name;
+                IsFile = (filemode == efile.File) ? true : false;
+
+                
+            }
+
+            public void AddChild(FileSystem system)
+            {
+                children.Add(system);
+            }
+
+            public void Print(string indent = "")
+            {
+                 Console.WriteLine(indent + (IsFile ? "File : " + this.Name : "Directory : " + this.Name));
+                Console.WriteLine();
+
+                foreach(var child in children)
+                {
+                    child.Print("  ");
+                }
+            }
+        }
+
+        static void Main()
+        {
+            FileSystem directory1 = new FileSystem("Documents",FileSystem.efile.Directory);
+
+            FileSystem file1 = new FileSystem("Resume.docx", FileSystem.efile.File);
+            FileSystem file2 = new FileSystem("Project.pdf", FileSystem.efile.File);
+
+
+            directory1.AddChild(file1);
+            directory1.AddChild(file2);
+
+
+
+            FileSystem directory2 = new FileSystem("Photos", FileSystem.efile.Directory);
+
+            FileSystem file3 = new FileSystem("Vacation.jpg", FileSystem.efile.File);
+            FileSystem file4 = new FileSystem("Diving.jpg", FileSystem.efile.File);
+            FileSystem file5 = new FileSystem("Family.jpg", FileSystem.efile.File);
+
+            directory2.children = new List<FileSystem> { file4, file5 };
+
+            directory1.Print();
+           // directory2.Print(directory2);
+
+            Console.ReadKey();
+
+
+        }
+    }
+}

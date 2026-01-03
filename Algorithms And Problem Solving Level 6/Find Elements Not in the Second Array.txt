@@ -1,0 +1,47 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+
+        static int[] ElementsNotInSecondArray(int[] nums1, int[] nums2)
+        {
+            HashSet<int> set1 = new HashSet<int>(nums2);
+            List<int> result = new List<int>();
+
+            foreach (int n in nums1)
+            {
+                if (!set1.Contains(n))
+                    result.Add(n);
+            }
+
+
+
+
+            return result.ToArray();
+        }
+
+
+        static void Main()
+        {
+
+            int[] nums1 = { 1, 2, 3, 4 };
+            int[] nums2 = { 3, 4, 5, 6 };
+            Console.WriteLine(string.Join(", ", ElementsNotInSecondArray(nums1, nums2)));
+
+         
+
+            Console.ReadKey();
+
+        }
+    }
+}

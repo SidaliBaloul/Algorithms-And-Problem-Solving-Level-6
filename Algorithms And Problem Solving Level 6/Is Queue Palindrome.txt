@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        public static bool IsQueuePalindrome(Queue<int> qu)
+        {
+
+            Stack<int> st = new Stack<int>(qu);
+
+            while(qu.Count > 0)
+            {
+                if (st.Pop() != qu.Dequeue())
+                    return false;
+            }
+
+            return true;
+        }
+
+        static void Main()
+        {
+           Queue<int> qu = new Queue<int>(new[] { 1,2,3,2,1});
+
+
+            if (IsQueuePalindrome(qu))
+                Console.WriteLine("Yes, Queue is Palindrome \n");
+            else
+                Console.WriteLine("No, Queue is Not Palindrome");
+
+
+
+        }
+    }
+}

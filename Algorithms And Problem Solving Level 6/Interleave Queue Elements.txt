@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace cours23
+{
+    internal class Program
+    {
+        static void InterleaveQueue(Queue<int> queue)
+        {
+            int halfSize = queue.Count / 2;
+            Stack<int> stack = new Stack<int>();
+            for (int i = 0; i < halfSize; i++)
+            {
+                stack.Push(queue.Dequeue());
+            }
+
+            while (stack.Count > 0)
+            {
+                queue.Enqueue(stack.Pop()); //4,5,6,3,2,1
+            }
+
+            for (int i = 0; i < halfSize; i++)
+            {
+                queue.Enqueue(queue.Dequeue()); //3,2,1,4,5,6
+            }
+
+            for (int i = 0; i < halfSize; i++)
+            {
+                stack.Push(queue.Dequeue()); //3,2,1 //4,5,6
+            }
+
+            while (stack.Count > 0)
+            {
+                queue.Enqueue(stack.Pop()); //1,4,2,5,3,6
+                queue.Enqueue(queue.Dequeue());
+            }
+        }
+
+        static void Main()
+        {
+            Queue<int> queue = new Queue<int>(new[] { 1, 2, 3, 4, 5, 6 });
+            InterleaveQueue(queue);
+            Console.WriteLine(string.Join(", ", queue)); 
+
+        }
+    }
+}
